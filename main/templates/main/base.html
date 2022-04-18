@@ -38,17 +38,28 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html"
+                <a class="nav-link" aria-current="page" href="home.html"
                   >Home</a
                 >
               </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pending</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Completed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+              </li>
+              {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Sign up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Login</a>
               </li>
-              <!-- more list items here -->
+              {% endif %}
             </ul>
           </div>
         </div>
