@@ -10,7 +10,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <title>ToDo</title>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>tOdO</title>
+    {% endif %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
