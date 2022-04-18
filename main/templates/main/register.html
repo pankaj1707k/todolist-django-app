@@ -4,7 +4,9 @@
     <h1 class="display-6 mt-4">New User Registration</h1>
     <form method="post" class="mt-4">
         {% csrf_token %}
-        {{ form.non_field_errors }}
+        {% for error in form.non_field_errors %}
+        <div class="text-danger text-center">{{ error }}</div>
+        {% endfor %}
         {% for field in form %}
         <div class="mb-3 row">
             <div class="col">
@@ -12,7 +14,12 @@
                     {{ field.label }}
                 </label>
             </div>
-            <div class="col-10">{{ field }}</div>
+            <div class="col-10">
+                {{ field }}
+                {% for error in field.errors %}
+                <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
         </div>
         {% endfor %}
         <div class="mb-2">
