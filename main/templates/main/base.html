@@ -53,6 +53,16 @@
         </div>
     </nav>
 
+    {% if messages %}
+    <div class="container text-center mt-2 mb-1">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     {% block content %} {% endblock %}
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center pt-3 my-4 border-top fixed-bottom">

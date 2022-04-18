@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.views import View
 from .forms import UserRegisterForm
+from django.contrib import messages
 
 
 class HomeView(TemplateView):
@@ -32,6 +33,7 @@ class RegisterView(TemplateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "You have been registered! Login now!")
             return redirect("home")
         context = self.get_context_data()
         context.update({"form": form})
