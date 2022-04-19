@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Task
+
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
@@ -47,3 +49,22 @@ class UserLoginForm(forms.Form):
             attrs={"class": "form-control", "placeholder": "Password"}
         ),
     )
+
+
+class TaskCreationForm(forms.ModelForm):
+    task = forms.Field(
+        required=True,
+        label="Task",
+        widget=forms.Textarea(
+            attrs={"class": "form-control", "placeholder": "Add something to do..."}
+        ),
+    )
+    due_date = forms.DateField(
+        required=False,
+        label="Due Date",
+        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+    )
+
+    class Meta:
+        model = Task
+        fields = ["task", "due_date"]
