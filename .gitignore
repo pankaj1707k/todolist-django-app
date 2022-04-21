@@ -135,6 +135,3 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
-# Additional
-static_web_pages/
