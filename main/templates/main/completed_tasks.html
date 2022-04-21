@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<main class="container px-4 mb-5">
+    <div class="container-fluid text-center mt-3">
+        <h1 class="display-5">Completed Tasks</h1>
+    </div>
+    {% for task in tasks %}
+    <div class="card text-dark bg-light mt-3 border-dark">
+        <div class="card-body">
+            {{ task.task }}
+        </div>
+        <div class="card-footer bg-transparent">
+            <div>
+                <p>Due - {{ task.due_date }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock content %}

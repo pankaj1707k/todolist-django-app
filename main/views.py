@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import TemplateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Task
 
 from .forms import TaskForm, UserLoginForm, UserRegisterForm
+from .models import Task
 
 
 class HomeView(TemplateView):
@@ -124,3 +124,13 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
     success_url = "/tasks/pending/"
+
+
+class TaskCompletedListView(LoginRequiredMixin, TemplateView):
+    template_name = "main/completed_tasks.html"
+
+    def get(self, request):
+        tasks = Task.objects.filter(user=self.request.user, completed=True)
+        context = super().get_context_data()
+        context.update({"title": "tOdO | Completed", "tasks": tasks})
+        return render(request, self.template_name, context)
