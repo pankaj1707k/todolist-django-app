@@ -68,3 +68,29 @@ class TaskCreationForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ["task", "due_date"]
+
+
+class TaskUpdateForm(forms.ModelForm):
+    task = forms.Field(
+        required=False,
+        label="Task",
+        widget=forms.Textarea(
+            attrs={"class": "form-control", "placeholder": "Add something to do..."}
+        ),
+    )
+    due_date = forms.DateField(
+        required=False,
+        label="Due Date",
+        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+    )
+    completed = forms.BooleanField(
+        required=False,
+        label="Mark as Done",
+        widget=forms.CheckboxInput(
+            attrs={"class": "form-check-input", "type": "checkbox"}
+        ),
+    )
+
+    class Meta:
+        model = Task
+        fields = ["task", "due_date", "completed"]

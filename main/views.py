@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import TemplateView, UpdateView
 
-from .forms import TaskForm, UserLoginForm, UserRegisterForm
+from .forms import TaskCreationForm, TaskUpdateForm, UserLoginForm, UserRegisterForm
 from .models import Task
 
 
@@ -122,7 +122,7 @@ class TaskPendingListView(LoginRequiredMixin, TemplateView):
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "main/edit_task.html"
     model = Task
-    form_class = TaskForm
+    form_class = TaskUpdateForm
     success_url = "/tasks/pending/"
 
 
