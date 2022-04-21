@@ -102,8 +102,7 @@ class TaskCreationView(LoginRequiredMixin, TemplateView):
         if form.is_valid():
             form.instance.user = self.request.user
             form.save()
-            messages.success(request, "Task added")
-            return redirect("home")
+            return redirect("pending-tasks")
         context = self.get_context_data()
         context.update({"form": form})
         return render(request, self.template_name, context)
