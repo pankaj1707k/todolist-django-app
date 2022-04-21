@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views import View
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, DeleteView
 
 from .forms import TaskCreationForm, TaskUpdateForm, UserLoginForm, UserRegisterForm
 from .models import Task
@@ -134,3 +134,9 @@ class TaskCompletedListView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data()
         context.update({"title": "tOdO | Completed", "tasks": tasks})
         return render(request, self.template_name, context)
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = "main/delete_task_confirm.html"
+    model = Task
+    success_url = "/tasks/pending/"
