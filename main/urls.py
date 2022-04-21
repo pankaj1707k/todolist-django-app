@@ -8,6 +8,6 @@ urlpatterns = [
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("new-task/", views.TaskCreationView.as_view(), name="new-task"),
-    path("tasks/pending/", views.TaskListView.as_view(), name="pending-tasks"),
+    path("tasks/pending/", views.TaskPendingListView.as_view(), name="pending-tasks"),
     path("tasks/edit/<int:pk>/", views.TaskUpdateView.as_view(), name="edit-task"),
 ]

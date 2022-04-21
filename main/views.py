@@ -109,7 +109,7 @@ class TaskCreationView(LoginRequiredMixin, TemplateView):
         return render(request, self.template_name, context)
 
 
-class TaskListView(LoginRequiredMixin, TemplateView):
+class TaskPendingListView(LoginRequiredMixin, TemplateView):
     template_name = "main/pending_tasks.html"
 
     def get(self, request):
