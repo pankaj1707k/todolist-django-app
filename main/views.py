@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Task
 
@@ -117,3 +117,10 @@ class TaskListView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data()
         context.update({"title": "tOdO | Pending", "tasks": tasks})
         return render(request, self.template_name, context)
+
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "main/edit_task.html"
+    model = Task
+    form_class = TaskCreationForm
+    success_url = "/tasks/pending/"
