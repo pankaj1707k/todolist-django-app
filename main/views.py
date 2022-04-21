@@ -83,7 +83,7 @@ class LogoutView(View):
 
 
 class TaskCreationView(LoginRequiredMixin, TemplateView):
-    form_class = TaskForm
+    form_class = TaskCreationForm
     template_name = "main/add_task.html"
 
     def get_context_data(self, **kwargs):
