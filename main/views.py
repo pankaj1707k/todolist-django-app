@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Task
 
-from .forms import TaskCreationForm, UserLoginForm, UserRegisterForm
+from .forms import TaskForm, UserLoginForm, UserRegisterForm
 
 
 class HomeView(TemplateView):
@@ -83,7 +83,7 @@ class LogoutView(View):
 
 
 class TaskCreationView(LoginRequiredMixin, TemplateView):
-    form_class = TaskCreationForm
+    form_class = TaskForm
     template_name = "main/add_task.html"
 
     def get_context_data(self, **kwargs):
@@ -122,5 +122,5 @@ class TaskListView(LoginRequiredMixin, TemplateView):
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "main/edit_task.html"
     model = Task
-    form_class = TaskCreationForm
+    form_class = TaskForm
     success_url = "/tasks/pending/"

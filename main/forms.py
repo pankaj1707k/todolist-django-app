@@ -51,7 +51,7 @@ class UserLoginForm(forms.Form):
     )
 
 
-class TaskCreationForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     task = forms.Field(
         required=True,
         label="Task",
