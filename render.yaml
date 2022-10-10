@@ -6,6 +6,8 @@ services:
     buildCommand: "./build.sh"
     startCommand: "gunicorn todolist.wsgi:application"
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.6
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
