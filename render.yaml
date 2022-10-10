@@ -2,6 +2,7 @@ services:
   - type: web
     name: todolist
     env: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "gunicorn todolist.wsgi:application"
     envVars:
